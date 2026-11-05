@@ -1,14 +1,18 @@
+import { Footer } from "react-day-picker";
 import Analytics from "./components/home/analytics";
 import CTA from "./components/home/cta";
 import DashboardPreview from "./components/home/dashboard-preview";
 import Features from "./components/home/features";
 import Hero from "./components/home/hero";
 import Workflow from "./components/home/workflow";
+import Navbar from "./components/layout/NavBar";
 
 
 
 export default function HomePage() {
   return (
+    <>
+    <Navbar></Navbar>
     <main className="overflow-hidden">
       <Hero></Hero>
       <DashboardPreview></DashboardPreview>
@@ -17,5 +21,7 @@ export default function HomePage() {
       <Workflow></Workflow>
       <CTA></CTA>
     </main>
+    <Footer></Footer>
+    </>
   );
 }
