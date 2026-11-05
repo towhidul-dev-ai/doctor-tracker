@@ -77,10 +77,10 @@ export default function Navbar() {
           </Link>
 
           <Link
-            href="/login"
+            href="/sign-up"
             className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-600/20 transition hover:bg-blue-700"
           >
-            Get Started
+            Sign Up
             <ArrowRight size={16} />
           </Link>
         </div>
@@ -125,11 +125,11 @@ export default function Navbar() {
             </Link>
 
             <Link
-              href="/login"
+              href="/sign-up"
               onClick={() => setIsOpen(false)}
               className="flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
             >
-              Get Started
+              Sign Up
               <ArrowRight size={16} />
             </Link>
           </div>

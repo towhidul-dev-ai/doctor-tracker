@@ -33,6 +33,7 @@
 
 import type { Metadata } from "next";
 import "./globals.css";
+import { Toaster } from "@/components/ui/toast";
 
 export const metadata: Metadata = {
   title: "Doctor Tracker",
@@ -46,7 +47,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>{children}
+        <Toaster></Toaster>
+      </body>
     </html>
   );
 }
