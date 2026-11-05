@@ -4,6 +4,8 @@ import { Suspense } from "react";
 import { connection } from "next/server";
 import Link from "next/link";
 import DoctorDetailsClient from "./DoctorDetailsClient";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 type Doctor = {
   _id: string;
@@ -38,10 +40,16 @@ async function getDoctor(id: string): Promise<Doctor | null> {
   if (!API_URL) {
     throw new Error("Backend URL is not configured.");
   }
-
+  const jwtToken = await auth.api.getToken({
+    headers: await headers(),
+  })
+  console.log(jwtToken?.token)
   const response = await fetch(
     `${API_URL}/api/doctors/${encodeURIComponent(id)}`,
     {
+      headers: {
+        authorization: `Bearer ${jwtToken.token}`
+      },
       cache: "no-store",
     }
   );
@@ -78,10 +86,18 @@ async function getPatients(id: string): Promise<Patient[]> {
   );
 
   if (!response.ok) {
-    throw new Error(
-      `Failed to fetch patients. Status: ${response.status}`
-    );
-  }
+  const errorText = await response.text();
+
+  console.error("Doctor API error:", {
+    status: response.status,
+    response: errorText,
+  });
+
+  throw new Error(
+    `Failed to fetch doctor. Status: ${response.status}. ${errorText}`
+  );
+}
+  
 
   const result: ApiResponse<Patient[]> = await response.json();
 

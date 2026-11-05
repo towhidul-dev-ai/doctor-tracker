@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import { Trash2, X } from "lucide-react";
+import { authClient } from "@/lib/auth-client";
 
 interface Patient {
   _id: string;
@@ -23,6 +24,8 @@ export default function DeletePatientDialog({
   const [error, setError] = useState("");
 
   const handleDelete = async () => {
+    const {data, error} = await authClient.token()
+    const toekn = data?.token
     try {
       setLoading(true);
       setError("");
@@ -31,6 +34,10 @@ export default function DeletePatientDialog({
         `${process.env.NEXT_PUBLIC_API_URL}/api/patients/${patient._id}`,
         {
           method: "DELETE",
+          headers: {
+            'Content-Type': "application/json",
+            authorization: `Bearer ${toekn}`
+          }
         }
       );
 
