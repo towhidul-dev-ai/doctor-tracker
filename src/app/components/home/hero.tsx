@@ -31,7 +31,7 @@ export default function Hero() {
 
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
-              href="/login"
+              href="/dashboard"
               className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 font-semibold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-700"
             >
               Get Started
