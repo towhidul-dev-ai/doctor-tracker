@@ -355,6 +355,7 @@ import {
   Filter,
   X,
 } from "lucide-react";
+import { authClient } from "@/lib/auth-client";
 
 // Doctor type
 type Doctor = {
@@ -400,6 +401,8 @@ export default function DoctorsPage() {
 
   // Fetch all doctors
   async function getDoctors() {
+    const {data, error} = await authClient.token()
+    const token = data?.token
     try {
       setLoading(true);
       setErrorMessage("");
@@ -409,6 +412,10 @@ export default function DoctorsPage() {
       }
 
       const response = await fetch(`${apiUrl}/api/doctors`, {
+        headers: {
+            'Content-Type': 'application/json',
+            authorization: `Bearer ${token}`
+        },
         cache: "no-store",
       });
 

@@ -143,14 +143,14 @@ export default function DashboardLayoutClient({
         {/* Sidebar Account Footer */}
         <div className="shrink-0 border-t border-slate-100 p-4">
           <div className="flex items-center gap-3 rounded-xl bg-slate-50 p-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 font-semibold text-blue-700">
+            {/* <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 font-semibold text-blue-700">
               A
-            </div>
+            </div> */}
 
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-slate-800">
+              {/* <p className="truncate text-sm font-semibold text-slate-800">
                 Administrator
-              </p>
+              </p> */}
               <p className="text-xs text-slate-500">Admin Account</p>
             </div>
 
@@ -201,15 +201,15 @@ export default function DashboardLayoutClient({
 
             {/* Admin Profile */}
             <div className="hidden items-center gap-3 sm:flex">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 font-semibold text-blue-700">
+              {/* <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 font-semibold text-blue-700">
                 A
-              </div>
+              </div> */}
 
               <div>
-                <p className="text-sm font-semibold text-slate-800">
+                {/* <p className="text-sm font-semibold text-slate-800">
                   Administrator
-                </p>
-                <p className="text-xs text-slate-500">Admin</p>
+                </p> */}
+                {/* <p className="text-xs text-slate-500">Admin</p> */}
               </div>
             </div>
           </div>

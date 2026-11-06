@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react";
 import { Pencil, X } from "lucide-react";
+import { authClient } from "@/lib/auth-client";
 
 interface Patient {
   _id: string;
@@ -58,6 +59,8 @@ export default function EditPatientDialog({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const {data, error} = await authClient.token()
+    const token = data?.token
 
     try {
       setLoading(true);
@@ -69,6 +72,7 @@ export default function EditPatientDialog({
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
+            authorization: `Bearer ${token}`
           },
           body: JSON.stringify({
             ...formData,

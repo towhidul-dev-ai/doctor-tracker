@@ -16,6 +16,7 @@ import {
   Users,
   RefreshCw,
 } from "lucide-react";
+import { authClient } from "@/lib/auth-client";
 
 // Doctor type
 type Doctor = {
@@ -75,6 +76,9 @@ export default function DoctorDetailsClient({
 
   // Refresh patient list
   async function getPatients() {
+    const {data, error} = await authClient.token()
+    // console.log(data)
+    const token = data?.token
     if (!API_URL) {
       alert("API URL is not configured.");
       return;
@@ -85,7 +89,11 @@ export default function DoctorDetailsClient({
 
       const response = await fetch(
         `${API_URL}/api/doctors/${encodeURIComponent(doctor._id)}/patients`,
-        {
+        { headers: {
+          'Content-Type': "application/json",
+          authorization: `Bearer ${token}`
+
+        },
           cache: "no-store",
         }
       );

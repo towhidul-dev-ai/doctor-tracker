@@ -459,6 +459,7 @@ import {
 } from "lucide-react";
 import DeletePatientDialog from "./DeletePatientDialog";
 import EditPatientDialog from "./EditPaitentDialog";
+import { authClient } from "@/lib/auth-client";
 
 // import EditPatientDialog from "@/components/patients/EditPatientDialog";
 // import DeletePatientDialog from "@/components/patients/DeletePatientDialog";
@@ -519,6 +520,9 @@ export default function PatientsPage() {
 
       const params = new URLSearchParams();
 
+      const {data, error} = await authClient.token()
+      const token = data?.token
+
       params.set("page", String(page));
       params.set("limit", String(limit));
 
@@ -543,7 +547,12 @@ export default function PatientsPage() {
       }
 
       const response = await fetch(
-        `${API_URL}/api/patients?${params.toString()}`
+        `${API_URL}/api/patients?${params.toString()}`, {
+          headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    cache: "no-store",
+        }
       );
 
       if (!response.ok) {
